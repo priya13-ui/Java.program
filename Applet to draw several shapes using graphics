@@ -1,0 +1,41 @@
+import java.applet.Applet;
+import java.awt.Graphics;
+import java.awt.Color;
+
+/*
+<applet code="ShapesApplet" width="400" height="400">
+</applet>
+*/
+
+public class ShapesApplet extends Applet {
+
+    public void paint(Graphics g) {
+
+        // Set color and draw a line
+        g.setColor(Color.RED);
+        g.drawLine(20, 20, 200, 20);
+
+        // Draw Rectangle
+        g.setColor(Color.BLUE);
+        g.drawRect(50, 50, 100, 60);
+
+        // Draw Filled Rectangle
+        g.setColor(Color.GREEN);
+        g.fillRect(200, 50, 100, 60);
+
+        // Draw Oval
+        g.setColor(Color.MAGENTA);
+        g.drawOval(50, 150, 100, 60);
+
+        // Draw Filled Oval
+        g.setColor(Color.ORANGE);
+        g.fillOval(200, 150, 100, 60);
+
+        // Draw Circle (equal width & height)
+        g.setColor(Color.BLACK);
+        g.drawOval(150, 250, 80, 80);
+
+        // Draw String
+        g.drawString("Drawing Shapes using Applet", 100, 370);
+    }
+}
