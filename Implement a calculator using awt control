@@ -1,0 +1,77 @@
+import java.awt.*;
+import java.awt.event.*;
+
+public class CalculatorAWT extends Frame implements ActionListener {
+
+    TextField t1, t2, result;
+    Button add, sub, mul, div;
+
+    CalculatorAWT() {
+
+        setTitle("AWT Calculator");
+        setLayout(new FlowLayout());
+
+        // Create components
+        t1 = new TextField(10);
+        t2 = new TextField(10);
+        result = new TextField(15);
+        result.setEditable(false);
+
+        add = new Button("Add");
+        sub = new Button("Sub");
+        mul = new Button("Mul");
+        div = new Button("Div");
+
+        // Add components
+        add(new Label("Number 1:"));
+        add(t1);
+        add(new Label("Number 2:"));
+        add(t2);
+
+        add(add);
+        add(sub);
+        add(mul);
+        add(div);
+
+        add(new Label("Result:"));
+        add(result);
+
+        // Register events
+        add.addActionListener(this);
+        sub.addActionListener(this);
+        mul.addActionListener(this);
+        div.addActionListener(this);
+
+        setSize(300, 250);
+        setVisible(true);
+
+        // Window closing event
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent we) {
+                dispose();
+            }
+        });
+    }
+
+    public void actionPerformed(ActionEvent e) {
+
+        int num1 = Integer.parseInt(t1.getText());
+        int num2 = Integer.parseInt(t2.getText());
+        int res = 0;
+
+        if (e.getSource() == add)
+            res = num1 + num2;
+        else if (e.getSource() == sub)
+            res = num1 - num2;
+        else if (e.getSource() == mul)
+            res = num1 * num2;
+        else if (e.getSource() == div)
+            res = num1 / num2;
+
+        result.setText(String.valueOf(res));
+    }
+
+    public static void main(String[] args) {
+        new CalculatorAWT();
+    }
+}
