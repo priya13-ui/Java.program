@@ -1,0 +1,78 @@
+import java.awt.*;
+import java.awt.event.*;
+import java.util.Calendar;
+
+public class AnalogClock extends Frame implements Runnable {
+
+    Thread t;
+
+    public AnalogClock() {
+        setTitle("Analog Clock");
+        setSize(400, 400);
+        setVisible(true);
+
+        t = new Thread(this);
+        t.start();
+
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent we) {
+                System.exit(0);
+            }
+        });
+    }
+
+    public void run() {
+        while (true) {
+            repaint();
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {}
+        }
+    }
+
+    public void paint(Graphics g) {
+
+        int centerX = 200;
+        int centerY = 200;
+        int radius = 150;
+
+        // Draw clock circle
+        g.drawOval(centerX - radius, centerY - radius, 2 * radius, 2 * radius);
+
+        // Draw numbers (simple markers)
+        g.drawString("12", 190, 70);
+        g.drawString("3", 320, 205);
+        g.drawString("6", 195, 340);
+        g.drawString("9", 60, 205);
+
+        // Get current time
+        Calendar cal = Calendar.getInstance();
+        int hours = cal.get(Calendar.HOUR);
+        int minutes = cal.get(Calendar.MINUTE);
+        int seconds = cal.get(Calendar.SECOND);
+
+        // Calculate angles
+        double secondAngle = Math.toRadians(seconds * 6 - 90);
+        double minuteAngle = Math.toRadians(minutes * 6 - 90);
+        double hourAngle = Math.toRadians((hours * 30 + minutes / 2) - 90);
+
+        // Draw second hand
+        g.drawLine(centerX, centerY,
+                centerX + (int)(120 * Math.cos(secondAngle)),
+                centerY + (int)(120 * Math.sin(secondAngle)));
+
+        // Draw minute hand
+        g.drawLine(centerX, centerY,
+                centerX + (int)(100 * Math.cos(minuteAngle)),
+                centerY + (int)(100 * Math.sin(minuteAngle)));
+
+        // Draw hour hand
+        g.drawLine(centerX, centerY,
+                centerX + (int)(70 * Math.cos(hourAngle)),
+                centerY + (int)(70 * Math.sin(hourAngle)));
+    }
+
+    public static void main(String[] args) {
+        new AnalogClock();
+    }
+}
