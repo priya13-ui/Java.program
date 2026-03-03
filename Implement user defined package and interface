@@ -1,0 +1,6 @@
+package mypackage;   // User-defined package
+
+// Interface
+public interface MyInterface {
+    void display();   // Abstract method
+}
