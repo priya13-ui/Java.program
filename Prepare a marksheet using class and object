@@ -1,0 +1,58 @@
+import java.util.Scanner;
+
+class Marksheet {
+    String name;
+    int rollNo;
+    int m1, m2, m3;
+    int total;
+    double average;
+
+    // Method to input details
+    void input() {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter Student Name: ");
+        name = sc.nextLine();
+
+        System.out.print("Enter Roll Number: ");
+        rollNo = sc.nextInt();
+
+        System.out.print("Enter Marks in Subject 1: ");
+        m1 = sc.nextInt();
+
+        System.out.print("Enter Marks in Subject 2: ");
+        m2 = sc.nextInt();
+
+        System.out.print("Enter Marks in Subject 3: ");
+        m3 = sc.nextInt();
+    }
+
+    // Method to calculate total and average
+    void calculate() {
+        total = m1 + m2 + m3;
+        average = total / 3.0;
+    }
+
+    // Method to display marksheet
+    void display() {
+        System.out.println("\n----- MARKSHEET -----");
+        System.out.println("Name: " + name);
+        System.out.println("Roll No: " + rollNo);
+        System.out.println("Subject 1: " + m1);
+        System.out.println("Subject 2: " + m2);
+        System.out.println("Subject 3: " + m3);
+        System.out.println("Total Marks: " + total);
+        System.out.println("Average: " + average);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        Marksheet student = new Marksheet();  // Object creation
+
+        student.input();
+        student.calculate();
+        student.display();
+    }
+}
