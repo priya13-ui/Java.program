@@ -4,3 +4,20 @@ package mypackage;   // User-defined package
 public interface MyInterface {
     void display();   // Abstract method
 }
+package mypackage;
+
+public class MyClass implements MyInterface {
+
+    public void display() {
+        System.out.println("User-defined package and interface implemented successfully.");
+    }
+}
+import mypackage.MyClass;   // Importing user-defined package
+
+public class Main {
+    public static void main(String[] args) {
+
+        MyClass obj = new MyClass();
+        obj.display();
+    }
+}
